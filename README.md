@@ -1,0 +1,1 @@
+# CoreDNS + MySQL sample
