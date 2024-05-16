@@ -1,0 +1,22 @@
+. {
+    log
+    errors
+
+    forward . 127.0.0.1:5301 127.0.0.1:5302
+}
+
+
+.:5301 {
+    log
+    errors
+
+    mysql {
+        dsn coredns:coredns@tcp(corednsdb:3306)/coredns?charset=utf8mb4
+    }
+}
+
+.:5302 {
+    forward . tls://1.1.1.1 tls://1.0.0.1 {
+        tls_servername cloudflare-dns.com
+    }
+}
